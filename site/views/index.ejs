@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+ 
+      <div class="main-container">
+        <h1>
+          Your shopping Site
+        </h1>
+        
+        <% dataArr.forEach(item => { %>
+
+          <div id="<%= item.sys.id %>">
+            <div>
+              <img src=<%= item.fields.image.fields.file.url %> >
+            </img>
+            <div>
+              <%= item.fields.title %> 
+            </div>
+            <button id="btn-buy">
+              <a href="/order/<%= item.sys.id %>">buy</a>
+  
+            </button>
+            </div>
+  
+  
+          </div>
+
+
+       <% }) %> 
+        
+
+      </div>
+</body>
+</html>

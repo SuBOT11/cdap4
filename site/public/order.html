@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="append">
+    <div>
+      <p> trying to reconnect ....</p>
+      
+    <div id="add">
+       <span id="number" style="color: red; font-size: larger;" > 0 </span> </p>
+    </div>
+    </div>
+
+    
+  </div>
+  
+</body>
+<script>
+ const numberSpan = document.getElementById("number");
+ const parent = document.getElementById("add");
+ 
+
+
+
+var interval = 1;
+setInterval(()=>{
+  if(interval <= 5)
+  {
+    numberSpan.innerText = `retrying in  ${interval} seconds`;
+    interval++;
+  }else{
+    numberSpan.innerText = `failed to connect`;
+    clearInterval();
+
+  }
+  
+
+
+},1000)
+console.log('here');
+
+  
+  
+</script>
+</html>

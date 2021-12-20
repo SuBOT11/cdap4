@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <div class="wrapper">
+     <div>
+       <h2>Buy <span id="title"><%= item.title %> </span></h2>
+     </div>
+     <div>
+       <img src="../images/product-<%= id %>.jpeg" alt="">
+     </div>
+     <div>
+      <div><span style="margin: auto;">name : </span><span><%= item.title %> </span></div>
+      <span style="border: 12px;">price : </span><span><%= item.price %>$ </span>
+        
+     </div>
+     
+     <div>
+       <form action="/orderItem/<%=id %> " method="post">
+        <label for="phone">Enter your number </label>
+        <input required type="text" id="phone" name="phone">
+        <br> </br>
+        <label style="border: 10px 10px;" for="name">Phone</label> 
+        <input type="text" id="title" name="title" value="<%= item.title %>">
+        <div><button type="submit">create order </button></div>
+      
+      
+      </form>
+     </div>
+   </div>
+   
+   
+      
+</body>
+
+
+
+
+
+</html>

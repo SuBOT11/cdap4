@@ -22,24 +22,25 @@ router.get('/order/:id',(req,res)=>{
 })
 
 router.post('/orderItem/:id', async (req,res)=>{
+  try{
+    var  status = await modelSites.reqOrder(req.body)
+    if(status !== 200){
+      
+      res.send('<h1> Cannot confirm your Order </h1>');
   
-  
-  var  status = await modelSites.reqOrder(req.body)
-  if(status !== 200){
-    res.send('<h1> Cannot confirm your Order </h1>');
+    }else{
+      
+      res.send("<h1>Your order has been placed.</h1>")
+    }
 
-  }else{
-    res.send("<h1>Your order has been placed.</h1>")
+  }catch {
+   res.send('<h1>error occured </h1>')
+
   }
-  console.log(status);
-
-})
-
-
-router.get('/od:id',(req,res)=>{
-  res.send('data sent');
- 
   
+
 })
+
+
 
 module.exports = router;

@@ -1,21 +1,16 @@
 const axios = require('axios').default;
 const reqOrder = async (data)=>{
   try{
+    var response =  await axios.post('http://localhost:3060/order-api/confirmOrder',data);
     
-    
-    const response = await axios.post('http://localhost:3060/order-api/confirmOrder',data);
-    
-    return response.status;
-    
+    return response.data.code;
+ 
 
-  }catch
-  {
-    return 404;
-    
+  }catch{
+    return 400;
+
   }
    
-
- 
 
 
 

@@ -1,0 +1,24 @@
+version: '1'
+
+services:
+  site: 
+   container_name: site
+   build: ./site
+   ports:
+     - '9030:9030'
+   networks:
+     - cdap4
+   
+     
+   order:
+    container_name: order-api
+    build: ./order_api
+    ports:
+      - '9060:9060'
+    networks:
+      - cdap4
+networks: 
+  cdap4:
+     
+ 
+  

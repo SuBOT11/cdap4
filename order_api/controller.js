@@ -1,7 +1,7 @@
 var amqp = require('amqplib/callback_api');
-const ajax = require('ajax');
+const ajax = require('ajax').default;
 const { json } = require('express');
-const e = require('express');
+
 const { cookie } = require('request');
 
 publish =  (data)=>{

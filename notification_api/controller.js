@@ -1,44 +1,37 @@
-var amqp = require('amqplib/callback_api');
+var amqp = require('amqplib');
 
-consume = async ()=>{
-    amqp.connect('amqp://localhost', function(error0, connection) {
-    if (error0) {
-      throw error0;
-    }
-    connection.createChannel(function(error1, channel) {
-      if (error1) {
-        throw error1;
-      }
-      var exchange = 'logs';
-  
-      channel.assertExchange(exchange, 'fanout', {
-        durable: false
-      });
-  
-      channel.assertQueue('', {
-        exclusive: true
-      }, function(error2, q) {
-        if (error2) {
-          throw error2;
-        }
-        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
-        channel.bindQueue(q.queue, exchange, '');
-  
-        channel.consume(q.queue, function(msg) {
-          if(msg.content) {
-              console.log(" [x] %s", msg.content.toString());
-              
-            }
-        }, {
-          noAck: true
-        });
-      });
-    });
-  })
 
+
+async function connect() {
+
+  try {
+      const amqpServer = "amqp://localhost:5672"
+      const connection = await amqp.connect(amqpServer)
+      const channel = await connection.createChannel();
+      await channel.assertQueue("jobs");
+      
+      channel.consume("jobs", message => {
+          const input = JSON.parse(message.content.toString());
+          console.log(input);
+          //console.log(`Recieved job with input ${input.number}`)
+          //"7" == 7 true
+          //"7" === 7 false
+
+         // if (input.number == 7 ) 
+              //channel.ack(message);
+      })
+
+      console.log("Waiting for messages...")
   
+  }
+  catch (ex){
+      console.error(ex)
+  }
 
 }
-module.exports = {
-  consume
-}
+
+
+
+
+
+module.exports = {connect};
